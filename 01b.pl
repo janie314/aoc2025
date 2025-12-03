@@ -11,14 +11,12 @@ while (<>) {
     my $sgn = $lr eq 'L' ? -1 : 1;
     if ( $i != 0 and $sgn == -1 and $num >= $i ) {
         $res += int( ( $num - $i ) / 100 ) + 1;
-    }
-    elsif ( $i != 0 and $sgn == 1 and $num >= 100 - $i ) {
+    } elsif ( $i != 0 and $sgn == 1 and $num >= 100 - $i ) {
         $res += int( ( $num + $i ) / 100 );
-    }
-    elsif ( $i == 0 ) {
+    } elsif ( $i == 0 ) {
         $res += int( $num / 100 );
     }
     $i = ( $i + $sgn * $num ) % 100;
 }
 
-print $res . "\n";
+print "$res\n";

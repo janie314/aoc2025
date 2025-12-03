@@ -10,4 +10,4 @@ while (<>) {
     $res++ if $i == 0;
 }
 
-print $res . "\n";
+print "$res\n";
