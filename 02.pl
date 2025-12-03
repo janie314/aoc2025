@@ -13,7 +13,7 @@ while (<>) {
             $sum  += $i if $i =~ /^([0-9]+)\g{-1}$/;
             $sum2 += $i if $i =~ /^([0-9]+)\g{-1}+$/;
         }
-    } ## end foreach my $range (split ','...)
-} ## end while (<>)
+    }
+}
 
 print "$sum\t$sum2\n";

@@ -19,6 +19,6 @@ while (<>) {
         $res += int( $num / 100 );
     }
     $i = ( $i + $sgn * $num ) % 100;
-} ## end while (<>)
+}
 
 print $res . "\n";
