@@ -27,7 +27,7 @@ while ($removed) {
                 foreach my $y (-1 .. 1) {
                     next if $i + $x < 0 or $i + $x > $n - 1 or $j + $y < 0 or $j + $y > $n - 1;
                     next if $x == 0 and $y == 0;
-                    $c++ if ($grid[ $i + $x ]->[ $j + $y ] eq '@');
+                    $c++ if $grid[ $i + $x ]->[ $j + $y ] eq '@';
                 }
             }
             if ($c < 4) {
