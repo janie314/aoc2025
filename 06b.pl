@@ -3,11 +3,20 @@ use strict;
 use warnings;
 no warnings 'experimental::re_strict';
 use re 'strict';
-use List::Util qw(sum);
-use List::MoreUtils;
 use Data::Dumper;
 
-sub trim { my $s = shift; $s =~ s/^\s+|\s+$//g; return $s; }
+sub trim {
+    my ($s) = @_;
+    $s =~ s/^\s+|\s+$//g;
+    return $s;
+}
+
+sub condense {
+    my ($v) = @_;
+    my $str = join '', @{$v};
+    return -1 if $str =~ /^\s*$/;
+    return int($str);
+}
 
 my @arr;
 
@@ -22,15 +31,11 @@ chomp;
 s/\s+/ /;
 my @ops = split ' ';
 
-print Dumper(\@arr);
-
 my @arr2;
 
-foreach my $j (0 .. scalar @{ $arr[0] }) {
-    push @arr2, [ map { $arr[$_]->[$j] } (0 .. scalar @arr - 1) ];
+foreach my $j (0 .. scalar @{ $arr[0] } - 1) {
+    push @arr2, condense([ map { $arr[$_]->[$j] } (0 .. scalar @arr - 1) ]);
 }
-
-@arr2 = map { int(trim(join '', @{$_})) || -1 } (@arr2);
 
 my $i        = 0;
 my $total    = 0;
