@@ -18,25 +18,27 @@ sub condense {
     return int($str);
 }
 
+# pull the input
 my @arr;
-
 while (<>) {
     chomp;
     last if /[\+\*]/;
     push @arr, [ split '' ];
 }
 
+# get the list of +/* operations
 <>;
 chomp;
 s/\s+/ /;
 my @ops = split ' ';
 
+# transpose
 my @arr2;
-
 foreach my $j (0 .. scalar @{ $arr[0] } - 1) {
     push @arr2, condense([ map { $arr[$_]->[$j] } (0 .. scalar @arr - 1) ]);
 }
 
+# do the math
 my $i        = 0;
 my $total    = 0;
 my $subtotal = 0;
