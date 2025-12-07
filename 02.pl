@@ -22,6 +22,6 @@ while (<>) {
     }
 }
 
-print "$sum1\t$sum2\n";
+print "$sum1\n$sum2\n";
 
 1;
