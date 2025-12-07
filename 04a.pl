@@ -2,6 +2,9 @@ package aoc2025;
 
 use strict;
 use warnings;
+
+our $VERSION = 1.0;
+
 no warnings 'experimental::re_strict';
 use re 'strict';
 use List::Util;
@@ -11,7 +14,7 @@ my @grid;
 
 while (<>) {
     chomp;
-    push @grid, [ split '' ];
+    push @grid, [ split //s ];
 }
 
 my $n     = scalar @grid;

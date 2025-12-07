@@ -1,13 +1,16 @@
 package aoc2025;
+
 use strict;
 use warnings;
+
+our $VERSION = 1.0;
 
 my $i    = 50;
 my $next = 0;
 my $res  = 0;
 
 while (<>) {
-    my ($lr, $num) = m/([LR])([0-9]+)/;
+    my ($lr, $num) = m/([LR])([0-9]+)/s;
     $num = int($num);
     my $sgn = $lr eq 'L' ? -1 : 1;
     if ($i != 0 and $sgn == -1 and $num >= $i) {

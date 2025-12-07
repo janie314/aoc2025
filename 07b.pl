@@ -2,6 +2,9 @@ package aoc2025;
 
 use strict;
 use warnings;
+
+our $VERSION = 1.0;
+
 no warnings 'experimental::re_strict';
 use re 'strict';
 use Data::Dumper;
@@ -12,7 +15,7 @@ use List::MoreUtils qw( first_index );
 my @arr;
 while (<>) {
     chomp;
-    push @arr, [ split '' ];
+    push @arr, [ split //s ];
 }
 
 my $split = 0;

@@ -2,20 +2,23 @@ package aoc2025;
 
 use strict;
 use warnings;
+
+our $VERSION = 1.0;
+
 no warnings 'experimental::re_strict';
 use re 'strict';
 use Data::Dumper;
 
 sub trim {
     my ($s) = @_;
-    $s =~ s/^\s+|\s+$//g;
+    $s =~ s/^\s+|\s+$//gs;
     return $s;
 }
 
 sub condense {
     my ($v) = @_;
     my $str = join '', @{$v};
-    return -1 if $str =~ /^\s*$/;
+    return -1 if $str =~ /^\s*$/s;
     return int($str);
 }
 
@@ -23,14 +26,14 @@ sub condense {
 my @arr;
 while (<>) {
     chomp;
-    last if /[\+\*]/;
-    push @arr, [ split '' ];
+    last if /[\+\*]/s;
+    push @arr, [ split //s ];
 }
 
 # get the list of +/* operations
 <>;
 chomp;
-s/\s+/ /;
+s/\s+/ /s;
 my @ops = split ' ';
 
 # transpose

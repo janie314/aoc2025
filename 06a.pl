@@ -2,6 +2,9 @@ package aoc2025;
 
 use strict;
 use warnings;
+
+our $VERSION = 1.0;
+
 no warnings 'experimental::re_strict';
 use re 'strict';
 use List::Util qw(sum);
@@ -12,19 +15,19 @@ my @arr;
 
 while (<>) {
     chomp;
-    last if /[\*\+]/;
-    $_ =~ s/^\s+//g;
-    $_ =~ s/\s+$//g;
-    $_ =~ s/\s+/ /g;
-    push @arr, [ map { int($_) } (split ' ') ];
+    last if /[\*\+]/s;
+    s/^\s+//gs;
+    s/\s+$//gs;
+    s/\s+/ /gs;
+    push @arr, [ map {int} (split / /s) ];
 }
 
 <>;
-$_ =~ s/^\s+//g;
-$_ =~ s/\s+$//g;
-$_ =~ s/\s+/ /g;
+s/^\s+//gs;
+s/\s+$//gs;
+s/\s+/ /gs;
 
-my @ops = split ' ';
+my @ops = split / /s;
 
 my $result = [];
 

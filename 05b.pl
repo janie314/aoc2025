@@ -2,6 +2,9 @@ package aoc2025;
 
 use strict;
 use warnings;
+
+our $VERSION = 1.0;
+
 no warnings 'experimental::re_strict';
 use re 'strict';
 use List::Util qw(min max);
@@ -12,8 +15,8 @@ my @ranges;
 
 while (<>) {
     chomp;
-    last if $_ eq '';
-    my ($x, $y) = split '-';
+    last unless length;
+    my ($x, $y) = split /-/s;
     push @ranges, [ int($x), int($y), 1 ];
 }
 

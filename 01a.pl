@@ -9,7 +9,7 @@ my $i   = 50;
 my $res = 0;
 
 while (<>) {
-    my ($lr, $num) = m/([LR])(\d+)/;
+    my ($lr, $num) = m/([LR])(\d+)/s;
     $i = ($i + ($lr eq 'L' ? -1 : 1) * int($num)) % 100;
     $res++ if $i == 0;
 }

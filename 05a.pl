@@ -2,6 +2,9 @@ package aoc2025;
 
 use strict;
 use warnings;
+
+our $VERSION = 1.0;
+
 no warnings 'experimental::re_strict';
 use re 'strict';
 use List::Util qw(min max);
@@ -14,8 +17,8 @@ my $max  = 0;
 
 while (<>) {
     chomp;
-    last if $_ eq '';
-    my ($x, $y) = split '-';
+    last unless length;
+    my ($x, $y) = split /-/s;
     $min = min($min, min($x, $y));
     $max = max($max, max($x, $y));
     $code .= "return 1 if $x <= \$i and \$i <= $y; ";
@@ -28,7 +31,7 @@ eval $code;
 my $count1 = 0;
 
 while (<>) {
-    $count1++ if f(int($_));
+    $count1++ if f(int);
 }
 
 print "$count1\n";

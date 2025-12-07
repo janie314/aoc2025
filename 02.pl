@@ -2,6 +2,9 @@ package aoc2025;
 
 use strict;
 use warnings;
+
+our $VERSION = 1.0;
+
 no warnings 'experimental::re_strict';
 use re 'strict';
 
@@ -9,12 +12,12 @@ my $sum1 = 0;
 my $sum2 = 0;
 
 while (<>) {
-    foreach my $range (split ',') {
-        my ($start, $end) = split '-', $range;
+    foreach my $range (split /,/s) {
+        my ($start, $end) = split /-/s, $range;
         next unless $start and $end;
         for my $i (int($start) .. int($end)) {
-            $sum1 += $i if $i =~ /^([0-9]+)\g{-1}$/;
-            $sum2 += $i if $i =~ /^([0-9]+)\g{-1}+$/;
+            $sum1 += $i if $i =~ /^([0-9]+)\g{-1}$/s;
+            $sum2 += $i if $i =~ /^([0-9]+)\g{-1}+$/s;
         }
     }
 }
