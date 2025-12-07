@@ -1,5 +1,8 @@
-severity = 4
+severity = 3
 
 [ -ControlStructures::ProhibitPostfixControls ] 
 [ -Modules::RequireFilenameMatchesPackage ]
 [ -TestingAndDebugging::ProhibitNoWarnings ]
+
+[RegularExpressions::RequireExtendedFormatting]
+minimum_regex_length_to_complain_about = 20

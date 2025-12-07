@@ -17,7 +17,6 @@ while (<>) {
 
 my $split = 0;
 my %beams = ((first_index { $_ eq 'S' } (@{ $arr[0] })) => 1);
-my @paths;
 
 foreach my $row (2 .. scalar @arr - 1) {
     my %newbeams;

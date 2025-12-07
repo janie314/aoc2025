@@ -6,6 +6,7 @@ no warnings 'experimental::re_strict';
 use re 'strict';
 use List::Util qw(min max);
 use List::MoreUtils;
+use Carp;
 
 my $code = 'sub f { my ($i) = @_; ';
 my $min  = 0;
@@ -21,7 +22,7 @@ while (<>) {
 }
 $code .= "return 0; }";
 
-## no critic NoStringyEval
+## no critic qw(BuiltinFunctions::ProhibitStringyEval, ErrorHandling::RequireCheckingReturnValueOfEval)
 eval $code;
 
 my $count1 = 0;
