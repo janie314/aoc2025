@@ -4,7 +4,7 @@ use warnings;
 no warnings 'experimental::re_strict';
 use re 'strict';
 use Data::Dumper;
-use List::Util      qw( uniq );
+use List::Util      qw( uniq sum );
 use List::MoreUtils qw( first_index );
 
 # pull the input
@@ -14,15 +14,33 @@ while (<>) {
     push @arr, [ split '' ];
 }
 
-my $start = first_index { $_ eq 'S' } (@{ $arr[0] });
+my $split = 0;
+my %beams = ((first_index { $_ eq 'S' } (@{ $arr[0] })) => 1);
+my @paths;
 
-sub recurse {
-    my ($row, $i) = @_;
-    my $sum = 0;
-    return 0                     if $i < 0 or $i > scalar @{ $arr[0] } - 1;
-    return 1                     if $row == scalar @arr;
-    return recurse($row + 1, $i) if $arr[$row]->[$i] eq '.';
-    return recurse($row + 1, $i - 1) + recurse($row + 1, $i + 1);
+foreach my $row (2 .. scalar @arr - 1) {
+    my %newbeams;
+    while (my ($index, $paths) = each %beams) {
+        if ($arr[$row]->[$index] eq '^') {
+            if (exists $newbeams{ $index - 1 }) {
+                $newbeams{ $index - 1 } += $paths;
+            } else {
+                $newbeams{ $index - 1 } = $paths;
+            }
+            if (exists $newbeams{ $index + 1 }) {
+                $newbeams{ $index + 1 } += $paths;
+            } else {
+                $newbeams{ $index + 1 } = $paths;
+            }
+        } else {
+            if (exists $newbeams{$index}) {
+                $newbeams{$index} += $paths;
+            } else {
+                $newbeams{$index} = $paths;
+            }
+        }
+    }
+    %beams = %newbeams;
 }
 
-print recurse(2, $start) . "\n";
+print sum(values %beams) . "\n";
