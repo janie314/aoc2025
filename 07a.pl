@@ -1,4 +1,4 @@
-package aoc2025;
+package AOC2025;
 
 use strict;
 use warnings;

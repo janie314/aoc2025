@@ -1,4 +1,4 @@
-severity = 2
+severity = 1
 
 [ -ControlStructures::ProhibitPostfixControls ] 
 [ -Modules::RequireFilenameMatchesPackage ]
@@ -7,6 +7,13 @@ severity = 2
 [ -ValuesAndExpressions::ProhibitNoisyQuotes ]
 [ -RegularExpressions::RequireLineBoundaryMatching ]
 [ -ValuesAndExpressions::ProhibitEmptyQuotes ]
+[ -CodeLayout::ProhibitParensWithBuiltins ]
+[ -ValuesAndExpressions::RequireInterpolationOfMetachars ]
+[ -RegularExpressions::ProhibitEscapedMetacharacters ]
+
+[InputOutput::RequireCheckedSyscalls]
+functions = :builtins
+exclude_functions = print
 
 [RegularExpressions::RequireExtendedFormatting]
 minimum_regex_length_to_complain_about = 20

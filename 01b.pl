@@ -1,4 +1,4 @@
-package aoc2025;
+package AOC2025;
 
 use strict;
 use warnings;
@@ -10,7 +10,7 @@ my $next = 0;
 my $res  = 0;
 
 while (<>) {
-    my ($lr, $num) = m/([LR])([0-9]+)/s;
+    my ($lr, $num) = m/([LR])(\d+)/s;
     $num = int($num);
     my $sgn = $lr eq 'L' ? -1 : 1;
     if ($i != 0 and $sgn == -1 and $num >= $i) {

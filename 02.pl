@@ -1,4 +1,4 @@
-package aoc2025;
+package AOC2025;
 
 use strict;
 use warnings;
@@ -16,8 +16,8 @@ while (<>) {
         my ($start, $end) = split /-/s, $range;
         next unless $start and $end;
         for my $i (int($start) .. int($end)) {
-            $sum1 += $i if $i =~ /^([0-9]+)\g{-1}$/s;
-            $sum2 += $i if $i =~ /^([0-9]+)\g{-1}+$/s;
+            $sum1 += $i if $i =~ /^(\d+)\g{-1}$/s;
+            $sum2 += $i if $i =~ /^(\d+)\g{-1}+$/s;
         }
     }
 }

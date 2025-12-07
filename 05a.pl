@@ -1,4 +1,4 @@
-package aoc2025;
+package AOC2025;
 
 use strict;
 use warnings;
@@ -23,7 +23,7 @@ while (<>) {
     $max = max($max, max($x, $y));
     $code .= "return 1 if $x <= \$i and \$i <= $y; ";
 }
-$code .= "return 0; }";
+$code .= 'return 0; }';
 
 ## no critic qw(BuiltinFunctions::ProhibitStringyEval, ErrorHandling::RequireCheckingReturnValueOfEval)
 eval $code;
