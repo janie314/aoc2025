@@ -18,7 +18,6 @@ my $split = 0;
 my @beams = (first_index { $_ eq 'S' } (@{ $arr[0] }));
 
 foreach my $i (2 .. scalar @arr - 1) {
-    print Dumper(\@beams);
     my @newbeams;
     foreach my $beam (@beams) {
         if ($arr[$i]->[$beam] eq '^') {
