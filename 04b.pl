@@ -1,3 +1,4 @@
+package aoc2025;
 
 use strict;
 use warnings;
@@ -40,3 +41,5 @@ while ($removed) {
 }
 
 print "$total\n";
+
+1;

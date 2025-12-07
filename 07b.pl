@@ -1,3 +1,4 @@
+package aoc2025;
 
 use strict;
 use warnings;
@@ -32,3 +33,5 @@ foreach my $row (2 .. scalar @arr - 1) {
 }
 
 print sum(values %beams) . "\n";
+
+1;

@@ -1,3 +1,4 @@
+package aoc2025;
 use strict;
 use warnings;
 
@@ -20,3 +21,5 @@ while (<>) {
 }
 
 print "$res\n";
+
+1;

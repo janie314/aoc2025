@@ -1,3 +1,4 @@
+package aoc2025;
 
 use strict;
 use warnings;
@@ -41,3 +42,5 @@ while ($bad) {
 }
 
 print "$length\n";
+
+1;

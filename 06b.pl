@@ -1,3 +1,4 @@
+package aoc2025;
 
 use strict;
 use warnings;
@@ -56,3 +57,5 @@ foreach my $x (@arr2) {
 }
 
 print "$total\n";
+
+1;

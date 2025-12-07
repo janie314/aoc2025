@@ -1,3 +1,5 @@
+package aoc2025;
+
 use strict;
 use warnings;
 no warnings 'experimental::re_strict';
@@ -18,3 +20,5 @@ while (<>) {
 }
 
 print "$sum1\t$sum2\n";
+
+1;

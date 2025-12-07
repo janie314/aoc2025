@@ -1,3 +1,4 @@
+package aoc2025;
 
 use strict;
 use warnings;
@@ -32,3 +33,5 @@ foreach my $i (0 .. $n - 1) {
 }
 
 print "$total\n";
+
+1;

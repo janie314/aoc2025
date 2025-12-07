@@ -1,3 +1,4 @@
+package aoc2025;
 
 use strict;
 use warnings;
@@ -32,3 +33,5 @@ foreach my $i (2 .. scalar @arr - 1) {
 }
 
 print "$split\n";
+
+1;

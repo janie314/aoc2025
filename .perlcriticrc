@@ -1,0 +1,5 @@
+severity = 4
+
+[ -ControlStructures::ProhibitPostfixControls ] 
+[ -Modules::RequireFilenameMatchesPackage ]
+[ -TestingAndDebugging::ProhibitNoWarnings ]

@@ -1,3 +1,5 @@
+package aoc2025;
+
 use strict;
 use warnings;
 no warnings 'experimental::re_strict';
@@ -22,3 +24,5 @@ while (<>) {
 }
 
 print "$total\n";
+
+1;

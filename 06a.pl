@@ -1,3 +1,4 @@
+package aoc2025;
 
 use strict;
 use warnings;
@@ -39,3 +40,5 @@ foreach my $row (@arr) {
 }
 
 print sum(@{$result}) . "\n";
+
+1;

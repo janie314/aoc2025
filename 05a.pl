@@ -1,3 +1,4 @@
+package aoc2025;
 
 use strict;
 use warnings;
@@ -30,3 +31,5 @@ while (<>) {
 }
 
 print "$count1\n";
+
+1;
