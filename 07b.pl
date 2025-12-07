@@ -22,22 +22,10 @@ foreach my $row (2 .. scalar @arr - 1) {
     my %newbeams;
     while (my ($index, $paths) = each %beams) {
         if ($arr[$row]->[$index] eq '^') {
-            if (exists $newbeams{ $index - 1 }) {
-                $newbeams{ $index - 1 } += $paths;
-            } else {
-                $newbeams{ $index - 1 } = $paths;
-            }
-            if (exists $newbeams{ $index + 1 }) {
-                $newbeams{ $index + 1 } += $paths;
-            } else {
-                $newbeams{ $index + 1 } = $paths;
-            }
+            $newbeams{ $index - 1 } = ($newbeams{ $index - 1 } || 0) + $paths;
+            $newbeams{ $index + 1 } = ($newbeams{ $index + 1 } || 0) + $paths;
         } else {
-            if (exists $newbeams{$index}) {
-                $newbeams{$index} += $paths;
-            } else {
-                $newbeams{$index} = $paths;
-            }
+            $newbeams{$index} = ($newbeams{$index} || 0) + $paths;
         }
     }
     %beams = %newbeams;
