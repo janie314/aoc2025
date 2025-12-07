@@ -20,6 +20,7 @@ while (<>) {
 }
 $code .= "return 0; }";
 
+## no critic NoStringyEval
 eval $code;
 
 my $count1 = 0;
