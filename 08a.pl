@@ -7,7 +7,7 @@ our $VERSION = 1.0;
 
 no warnings 'experimental::re_strict';
 use re 'strict';
-use List::Util      qw( min max uniq );
+use List::Util      qw( min max uniq reduce );
 use List::MoreUtils qw( first_index );
 use Data::Dumper;
 
@@ -34,22 +34,33 @@ foreach my $i (0 .. scalar @arr - 1) {
 }
 
 my @circuits;
-my @keys = keys %index;
-foreach my $i ((sort { int($a) <=> int($b) } @keys)[ 0 .. 9 ]) {
-    print Dumper($index{$i});
+my @biglist;
+my @keys  = keys %index;
+my $count = 0;
+foreach my $i (sort { int($a) <=> int($b) } @keys) {
+    last if $count >= 10;
     my ($x, $y) = @{ $index{$i} };
     my $added = 0;
     foreach my $circuit (@circuits) {
         last if $added;
-        if ((first_index { $_ == $x || $_ == $y } @{$circuit}) != -1) {
+        if ((first_index { $_ == $x or $_ == $y } @{$circuit}) != -1) {
             push @{$circuit}, ($x, $y);
+            my $before = scalar @biglist;
+            push @biglist, ($x, $y);
             @{$circuit} = uniq @{$circuit};
+            @biglist = uniq @biglist;
+            $count++ if scalar @biglist > $before;
             $added = 1;
         }
     }
-    push @circuits, [ $x, $y ] unless $added;
+    unless ($added) {
+        push @circuits, [ $x, $y ];
+        push @biglist, ($x, $y);
+        @biglist = uniq @biglist;
+        $count++;
+    }
 }
 
-print Dumper(\@circuits);
+printf "%d\n", reduce { $a * $b } (map { scalar @{$_} } (reverse sort { scalar @{$a} <=> scalar @{$b} } @circuits)[ 0 .. 2 ]);
 
 1;

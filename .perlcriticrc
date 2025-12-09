@@ -10,6 +10,7 @@ severity = 1
 [ -CodeLayout::ProhibitParensWithBuiltins ]
 [ -ValuesAndExpressions::RequireInterpolationOfMetachars ]
 [ -RegularExpressions::ProhibitEscapedMetacharacters ]
+[ -ControlStructures::ProhibitUnlessBlocks ]
 
 [InputOutput::RequireCheckedSyscalls]
 functions = :builtins
