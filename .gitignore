@@ -1,2 +1,4 @@
 input*
 testinput*
+target
+.zig-cache
