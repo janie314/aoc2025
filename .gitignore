@@ -1,2 +1,4 @@
 input*
 testinput*
+.zig-cache
+zig-out
