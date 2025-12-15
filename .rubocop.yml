@@ -1,0 +1,4 @@
+Naming/MethodParameterName:
+  Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
