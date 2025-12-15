@@ -1,0 +1,6 @@
+Naming/MethodParameterName:
+  Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
