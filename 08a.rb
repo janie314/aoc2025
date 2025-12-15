@@ -23,6 +23,7 @@ count = 0
 pairs.each do |v, w|
   i = circuits.find_index { |circuit| circuit.any? v }
   j = circuits.find_index { |circuit| circuit.any? w }
+  puts "i #{i} j #{j}"
 
   count += if i.nil?
              if j.nil?
@@ -44,4 +45,4 @@ pairs.each do |v, w|
   break if count == 999
 end
 
-puts(circuits.map { |arr| arr.uniq.length }.sort.reverse.take(3).reduce { |a, b| a * b })
+puts(circuits.map { |arr| arr.uniq.length }.join('-'))
