@@ -6,7 +6,7 @@ def dist(v, w)
   v.zip(w).map { |a, b| (a - b)**2 }.sum
 end
 
-coords = File.read('input8').split("\n").map do |line|
+coords = File.read('testinput8').split("\n").map do |line|
   line.split(',').map(&:to_i)
 end
 
@@ -48,5 +48,5 @@ pairs.each do |v, w|
              1
            end
   puts(circuits.map { |arr| arr.uniq.length }.sort.reverse.join('_'))
-  break if count == 999
+  break if count == 9
 end
