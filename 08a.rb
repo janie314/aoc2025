@@ -27,27 +27,26 @@ pairs.each do |v, w|
 
   count += if i.nil?
              if j.nil?
-               print 'a'
+               print "i,j nil\t\t\t"
                circuits.append([v, w])
              else
-               print 'b'
+               print "i nil, j not nil\t\t\t"
                circuits[j].append(v)
              end
              1
            elsif j.nil?
-             print 'c'
+             print "i not nil, j nil\t\t\t"
              circuits[i].append(w)
              1
            elsif i == j
-             print 'd'
+             print "i == j == not nil\t\t\t"
              0
            else
-             print 'e'
+             print "i != j == not nil\t\t\t"
              circuits.append(circuits[i].concat(circuits[j]))
              circuits = circuits.reject.with_index { |_, k| k == i || k == j }
              1
            end
-  puts "c #{count}"
   puts(circuits.map { |arr| arr.uniq.length }.sort.reverse.join('_'))
   break if count == 999
 end
