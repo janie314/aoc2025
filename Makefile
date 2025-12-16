@@ -2,7 +2,6 @@
 
 fmt:
 	perltidy -b *.pl
-	perlcritic .
 	rm *.bak
 	perlcritic .
 	bundle exec rubocop -A
