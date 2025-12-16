@@ -1,3 +1,5 @@
+AllCops:
+  NewCops: enable
 Naming/MethodParameterName:
   Enabled: false
 Style/MultilineBlockChain:
