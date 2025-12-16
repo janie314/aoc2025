@@ -39,7 +39,11 @@ class Day9b
   end
 
   def answer
+    puts "r #{@red_coords.length}"
+    i = 0
     Enumerator.product(@red_coords, @red_coords).map do |v, w|
+      i += 1
+      puts i
       if [v, w, { x: v[:x], y: w[:y] }, { x: w[:x], y: v[:y] }].all? do |u|
         inside?(u)
       end
