@@ -9,54 +9,45 @@ end
 
 class Day9b
   def initialize
-    @red_coords = File.read('input9').split("\n").map { |t| t.split(',').map(&:to_i) }
-    @rows = @red_coords.map { |x, _| x }.max
-    @cols = @red_coords.map { |_, y| y }.max
-    @green_coords = @red_coords.map.with_index do |v, i|
+    @red_coords = File.read('input9').split("\n").map do |t|
+      x, y = t.split(',').map(&:to_i)
+      { x: x, y: y }
+    end
+    @rows = @red_coords.map { |v| v[:x] }.max
+    @cols = @red_coords.map { |v| v[:y] }.max
+    @horiz_sides = @red_coords.map.with_index do |v, i|
       w = @red_coords[(i + 1) % @red_coords.length]
-      if v[0] == w[0]
-        (([v[1], w[1]].min + 1)..([v[1], w[1]].max - 1)).map do |i|
-          [v[0], i]
-        end
-      elsif v[1] == w[1]
-        (([v[0], w[0]].min + 1)..([v[0], w[0]].max - 1)).map do |i|
-          [i, v[1]]
-        end
+      if v[:x] == w[:x]
+        a, b = [v[:y], w[:y]].minmax
+        { x: v[:x], y_range: (a..b) }
       end
-    end.flatten(1)
-    @cache = {}
+    end.compact
+    @vert_sides = @red_coords.map.with_index do |v, i|
+      w = @red_coords[(i + 1) % @red_coords.length]
+      if v[:y] == w[:y]
+        a, b = [v[:x], w[:x]].minmax
+        { y: v[:y], x_range: (a..b) }
+      end
+    end.compact
   end
 
-  def is_inside?(v)
-    return @cache[v] if @cache.key?(v)
-
-    [[-1, 0], [1, 0], [0, -1], [0, 1]].each do |i, j|
-      k = 0
-      u = v
-      until @red_coords.any?(u) || @green_coords.any?(u)
-        puts "i,j,k #{i},#{j},#{k}"
-        if u[0].negative? || u[1].negative? || u[0] > @rows || u[1] > @cols
-          @cache[v] = false
-          return false
-        end
-
-        k += 1
-        u = add(v, [k * i, k * j])
-      end
-    end
-    @cache[v] = true
-    true
+  def inside?(v)
+    @horiz_sides.any? { |side| side[:x] <= v[:x] && side[:y_range].any?(v[:y]) } &&
+      @horiz_sides.any? { |side| side[:x] >= v[:x] && side[:y_range].any?(v[:y]) } &&
+      @vert_sides.any? { |side| side[:y] <= v[:y] && side[:x_range].any?(v[:x]) } &&
+      @vert_sides.any? { |side| side[:y] >= v[:y] && side[:x_range].any?(v[:x]) }
   end
 
   def answer
+    puts "r #{@red_coords.length}"
+    i = 0
     Enumerator.product(@red_coords, @red_coords).map do |v, w|
-      a, b = v
-      c, d = w
-      puts "a,b #{a},#{b} c,d #{c},#{d}"
-      if [[a, b], [a, d], [c, b], [c, d]].all? do |u|
-        is_inside?(u)
+      i += 1
+      puts i
+      if [v, w, { x: v[:x], y: w[:y] }, { x: w[:x], y: v[:y] }].all? do |u|
+        inside?(u)
       end
-        ((a - c + 1) * (b - d + 1)).abs
+        ((v[:x] - w[:x] + 1) * (v[:y] - w[:y] + 1)).abs
       else
         0
       end
