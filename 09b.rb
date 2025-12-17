@@ -9,7 +9,7 @@ end
 
 class Day9b
   def initialize
-    @red_coords = File.read('testinput9').split("\n").map do |t|
+    @red_coords = File.read('input9').split("\n").map do |t|
       x, y = t.split(',').map(&:to_i)
       { x: x, y: y }
     end
@@ -39,7 +39,10 @@ class Day9b
   end
 
   def answer
+    i = 0
     Enumerator.product(@red_coords, @red_coords).map do |v, w|
+      puts i if i % 1000 == 0
+      i += 1
       if [v, w, { x: v[:x], y: w[:y] }, { x: w[:x], y: v[:y] }].all? do |u|
         inside?(u)
       end
